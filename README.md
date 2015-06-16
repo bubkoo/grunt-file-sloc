@@ -17,14 +17,14 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-file-sloc');
 ```
 
-## The "file_sloc" task
+## The "sloc" task
 
 ### Overview
-In your project's Gruntfile, add a section named `file_sloc` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `sloc` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  file_sloc: {
+  sloc: {
     options: {
       // Task-specific options go here.
     },

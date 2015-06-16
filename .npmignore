@@ -3,6 +3,7 @@
 .jshintrc
 .jshintignore
 .DS_Store
+.editorconfig
 Gruntfile.js
 npm-debug.log
 test
