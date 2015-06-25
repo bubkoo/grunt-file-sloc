@@ -85,6 +85,7 @@ module.exports = function (grunt) {
     //var keys = options.keys || defaultKeys;
     var alias = options.alias || {};
     var count = resetCounter();
+    var foundExts = {};
 
     var d = options.reportType === 'json'
       ? getSlocFile(options.reportPath)
@@ -144,6 +145,8 @@ module.exports = function (grunt) {
 
         var stats = sloc(source, targetExt);
         var c = count[ext];
+
+        foundExts[ext] = true;
 
         c.file++;
         count.file++;
@@ -208,15 +211,15 @@ module.exports = function (grunt) {
 
         table.setHeading('Extension', 'Physical', 'Source', 'Comment', 'Single', 'Block', 'Mixed', 'Empty');
 
-        extensions.forEach(function (ext) {
+        for (var ext in foundExts) {
+          if (hasOwn.call(foundExts, ext)) {
+            var c = count[ext];
 
-          var c = count[ext];
-
-          if (c) {
-            table.addRow(ext, c.total, c.source, c.comment, c.single, c.block, c.mixed, c.empty);
+            if (c) {
+              table.addRow(ext, c.total, c.source, c.comment, c.single, c.block, c.mixed, c.empty);
+            }
           }
-
-        });
+        }
 
         grunt.log.writeln(table.toString());
 
